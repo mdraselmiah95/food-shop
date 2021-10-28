@@ -8,9 +8,10 @@ const AddUser = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
-  console.log(watch("example"));
   return (
     <div>
       <h1>Add User</h1>
@@ -41,7 +42,7 @@ const AddUser = () => {
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>This field is required</span>}
         <br />
-        <input className="p-1 mt-3 btn btn-danger" type="submit" />
+        <input className="py-2 px-3 mt-3 btn btn-danger" type="submit" />
       </form>
     </div>
   );
