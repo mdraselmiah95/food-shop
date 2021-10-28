@@ -29,7 +29,14 @@ const Products = () => {
   };
 
   const handleAddToCart = (index) => {
-    console.log(index);
+    const data = products[index];
+    data.email = "hero@gmail.com";
+    // console.log(data);
+    fetch(`http://localhost:5000/addOrders`, {
+      method: "POST",
+      headers: { "content-type": "application" },
+      body: JSON.stringify(data),
+    });
   };
 
   return (
