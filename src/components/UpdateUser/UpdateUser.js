@@ -11,7 +11,9 @@ const UpdateUser = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:5000/singleProduct/${productId}`)
