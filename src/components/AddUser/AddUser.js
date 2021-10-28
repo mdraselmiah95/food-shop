@@ -1,9 +1,48 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import "./AddUser.css";
 const AddUser = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  console.log(watch("example"));
   return (
     <div>
-      <h2>This is AddUser</h2>
+      <h1>Add User</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* register your input into the hook by invoking the "register" function */}
+        <input
+          className="p-2 m-2"
+          {...register("name")}
+          required
+          placeholder="Product name"
+        />
+
+        {/* include validation with required or other standard HTML validation rules */}
+        <input
+          className="p-2 m-2"
+          type="number"
+          {...register("price", { required: true })}
+          required
+          placeholder="Price"
+        />
+        <input
+          className="p-2 m-2"
+          type="text"
+          {...register("description", { required: true })}
+          required
+          placeholder="Description"
+        />
+        {/* errors will return when field validation fails  */}
+        {errors.exampleRequired && <span>This field is required</span>}
+        <br />
+        <input className="p-1 mt-3 btn btn-danger" type="submit" />
+      </form>
     </div>
   );
 };
