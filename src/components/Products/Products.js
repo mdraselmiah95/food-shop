@@ -28,6 +28,10 @@ const Products = () => {
     console.log(id);
   };
 
+  const handleAddToCart = (index) => {
+    console.log(index);
+  };
+
   return (
     <div>
       <h1>All Users {products.length}</h1>
@@ -49,7 +53,7 @@ const Products = () => {
                   <button className="btn btn-success m-2">update</button>
                 </Link>
                 <button
-                  // onClick={() => handleAddToCart(index)}
+                  onClick={() => handleAddToCart(index)}
                   className="btn btn-warning m-2"
                 >
                   buy now

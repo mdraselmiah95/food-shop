@@ -4,22 +4,36 @@ import { useParams } from "react-router";
 import "./UpdateUser.css";
 const UpdateUser = () => {
   const { productId } = useParams();
-  const [singleProduct, setSingleProduct] = useState();
+  const [singleProduct, setSingleProduct] = useState({});
+  const [isUpdate, setIsUpdated] = useState(null);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    fetch(`http://localhost:3000/update/${productId}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.modifiedCount) {
+          setIsUpdated(true);
+        } else {
+          setIsUpdated(false);
+        }
+      });
   };
 
   useEffect(() => {
     fetch(`http://localhost:5000/singleProduct/${productId}`)
       .then((response) => response.json())
       .then((data) => setSingleProduct(data));
-  }, []);
+  }, [productId, isUpdate]);
 
   return (
     <div>
