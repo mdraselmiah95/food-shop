@@ -31,10 +31,11 @@ const Products = () => {
   const handleAddToCart = (index) => {
     const data = products[index];
     data.email = "hero@gmail.com";
+    data.status = "pending";
     // console.log(data);
-    fetch(`http://localhost:5000/addOrders`, {
+    fetch("http://localhost:5000/addOrder", {
       method: "POST",
-      headers: { "content-type": "application" },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
   };
