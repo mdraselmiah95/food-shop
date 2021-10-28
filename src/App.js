@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/dashBoard">
             <Dashboard />
           </Route>
-          <Route exact path="/update">
+          <Route exact path="/update/:productId">
             <UpdateUser />
           </Route>
           <Route path="*">

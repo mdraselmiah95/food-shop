@@ -3,12 +3,30 @@ import { Link } from "react-router-dom";
 import "./Products.css";
 const Products = () => {
   const [products, setProducts] = useState([]);
-  // const [isDelete, setIsDelete] = useState(null);
+  const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((response) => response.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [isDelete]);
+
+  const handleDeleteProduct = (id) => {
+    fetch(`http://localhost:5000/deleteProduct/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.deletedCount) {
+          setIsDelete(true);
+        } else {
+          setIsDelete(false);
+        }
+      });
+    console.log(id);
+  };
 
   return (
     <div>
@@ -22,7 +40,7 @@ const Products = () => {
                 <h5>{pd?.price}</h5>
                 <h6>{pd?.description}</h6>
                 <button
-                  // onClick={() => handleDeleteProduct(pd._id)}
+                  onClick={() => handleDeleteProduct(pd._id)}
                   className="btn btn-danger m-2"
                 >
                   delete
