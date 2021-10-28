@@ -14,7 +14,7 @@ const AddUser = () => {
 
   return (
     <div>
-      <h1>Add User</h1>
+      <h1 className="text-info bolder">Add Product</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <input
