@@ -9,6 +9,15 @@ const AddUser = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    fetch("http://localhost:5000/addProduct", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.JSON())
+      .then((result) => console.log(result));
   };
 
   return (
