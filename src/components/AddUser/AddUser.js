@@ -16,7 +16,7 @@ const AddUser = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.JSON())
+      .then((res) => res.json())
       .then((result) => console.log(result));
   };
 
